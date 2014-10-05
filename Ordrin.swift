@@ -45,12 +45,20 @@ class Ordrin {
         for path in pathTpl.componentsSeparatedByString("/"){
             if path.hasPrefix(":") {
                 var param = path.substringFromIndex(path.startIndex);
-                uri += "/"
+                
+                // ISSSUE #20
+                
+                var parm : NSString = param
+                parm = parm.substringFromIndex(1)
+                param = parm
+                
+                uri += "/\(parameters[param]!)";
             } else if(!path.isEmpty){
                 uri += "/\(path)"
             }
             
         }
+        println("Hitting \(uri)");
         
         if (postFields != nil) {
             for field in postFields!{
@@ -145,6 +153,9 @@ class Ordrin {
         var required = ["datetime", "zip", "city", "addr"]
         
         if validateParams(params, required: required){
+            for a in params{
+                println(a)
+            }
             makeApiRequest("restaurant", endpointPath: endpointPath, pathTpl: pathTpl, parameters: params, postFields: nil, callback: callback)
         }
     }

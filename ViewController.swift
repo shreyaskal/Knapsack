@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColorFromRGB(0x45AC72);
+        self.view.backgroundColor = UIColorFromRGB(0x45ACA2);
         appTitle.textAlignment = NSTextAlignment.Center;
     }
     
@@ -81,6 +81,8 @@ class ViewController: UIViewController {
                 var query = Query(a: address, c: city, s: state, z: zip!, p: price!)
                 var item = query.callOrdrin()
                 
+                
+                
                 var strItem : [String] = []
                 for a in item{
                     if (a != nil){
@@ -91,6 +93,7 @@ class ViewController: UIViewController {
                 
                 var alert = UIAlertController(title:"Order Ready", message:"Name: \(strItem[0]) \nPrice: \(strItem[1]) ", preferredStyle: UIAlertControllerStyle.Alert);
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil));
+                alert.addAction(UIAlertAction(title: "Again", style: UIAlertActionStyle.Default, handler: nil));
                 self.presentViewController(alert, animated:true, completion:nil)
 
                 
