@@ -79,7 +79,20 @@ class ViewController: UIViewController {
             else {
                 
                 var query = Query(a: address, c: city, s: state, z: zip!, p: price!)
-                query.callOrdrin()
+                var item = query.callOrdrin()
+                
+                var strItem : [String] = []
+                for a in item{
+                    if (a != nil){
+                        strItem.append(a! as String)
+                        
+                    }
+                }
+                
+                var alert = UIAlertController(title:"Order Ready", message:"Name: \(strItem[0]) \nPrice: \(strItem[1]) ", preferredStyle: UIAlertControllerStyle.Alert);
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil));
+                self.presentViewController(alert, animated:true, completion:nil)
+
                 
                 
             }
